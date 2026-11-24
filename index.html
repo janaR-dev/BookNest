@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f6f1ea" />
+    <title>BookNest — an independent bookshop</title>
+    <meta name="description" content="BookNest is a small bookshop for paper and pixels: eighteen hand-picked titles, honest summaries, real reviews and instant eBooks." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1a17'/%3E%3Cpath d='M9 8h9a3 3 0 0 1 3 3v13H12a3 3 0 0 1-3-3z' fill='none' stroke='%23f6f1ea' stroke-width='1.6'/%3E%3Cpath d='M13 12h5M13 16h4' stroke='%23f6f1ea' stroke-width='1.4'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Independent bookshop · Portland, Oregon</p>
+            <h1>Books for the shelf you keep <em class="serif-italic">coming back</em> to.</h1>
+            <p class="lede">
+              Eighteen titles we have actually read, in paper and pixel. Honest summaries, real reviews, and a stock count
+              that is not pretending.
+            </p>
+            <form class="hero-search" action="books.html" role="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" />
+              </svg>
+              <input type="search" name="q" placeholder="Search a title, author or ISBN" aria-label="Search books" />
+              <button class="btn btn--sm" type="submit" style="height:38px">Search</button>
+            </form>
+            <div class="hero-actions">
+              <a class="btn btn--lg" href="books.html">Browse the shelves</a>
+              <a class="btn btn--secondary btn--lg" href="books.html?format=ebook">eBooks, instantly</a>
+            </div>
+            <p class="small faint" style="margin-top:14px">Paper posted in 1–2 days · eBooks land the moment you order</p>
+          </div>
+          <div class="hero-covers" id="hero-covers" aria-label="Featured books"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Browse</p>
+              <h2>Six shelves, one good habit</h2>
+            </div>
+            <a class="section-link" href="books.html">All books →</a>
+          </div>
+          <div class="cat-grid" id="cat-grid"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Just in</p>
+              <h2>New &amp; noteworthy</h2>
+            </div>
+            <a class="section-link" href="books.html?sort=new">View all →</a>
+          </div>
+          <div class="book-grid cols-4" id="new-grid"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="promo-band">
+            <div>
+              <p class="eyebrow" style="color:rgb(241 233 218 / 0.6)">Launch offer</p>
+              <h2>15% off your first order,<br />paper or pixel.</h2>
+              <p>Add the code in your bag at checkout. Works on everything, once per customer — the demo remembers your order history anyway.</p>
+            </div>
+            <div class="promo-code">
+              <code id="promo-code">READMORE</code>
+              <button type="button" id="copy-promo">Copy code</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="split">
+            <a class="format-card" href="books.html?format=paper">
+              <div>
+                <span class="row" style="color:var(--muted);font-size:13px">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7h7M8 10h5"/></svg>
+                  Paper, posted
+                </span>
+                <h3 style="margin-top:10px">Read it in the bath.<br />Lend it to a friend.</h3>
+                <p>Paperback and hardcover copies ship from our warehouse with tracked standard or express delivery. Free over $35.</p>
+              </div>
+              <span class="row" style="font-size:13px">Shop physical books →</span>
+            </a>
+            <a class="format-card" href="books.html?format=ebook">
+              <div>
+                <span class="row" style="color:var(--muted);font-size:13px">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v10M8 10l4 4 4-4"/><path d="M5 18h14"/></svg>
+                  eBooks, instantly
+                </span>
+                <h3 style="margin-top:10px">Delivered before<br />the kettle boils.</h3>
+                <p>DRM-free EPUB downloads. Your receipt and download links appear the moment checkout finishes — no shipping, no waiting.</p>
+              </div>
+              <span class="row" style="font-size:13px">Shop eBooks →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Staff picks</p>
+              <h2>Loved by our readers</h2>
+            </div>
+            <a class="section-link" href="books.html?sort=rating">Browse by rating →</a>
+          </div>
+          <div class="book-grid cols-4" id="top-grid"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="promise-row">
+            <div class="promise">
+              <span class="promise-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+              </span>
+              <div><strong>Free shipping over $35</strong><p>Tracked standard post, 3–5 days. Express and in-store collection available.</p></div>
+            </div>
+            <div class="promise">
+              <span class="promise-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg>
+              </span>
+              <div><strong>30-day returns</strong><p>Damaged or simply not for you — request a return from your order history.</p></div>
+            </div>
+            <div class="promise">
+              <span class="promise-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.5-7 9-4.1-1.5-7-4.8-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <div><strong>Stock you can trust</strong><p>Quantities are live in the demo and drop as orders are placed.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script type="module" src="src/pages/home.js"></script>
+  </body>
+</html>
