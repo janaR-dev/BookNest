@@ -1,0 +1,544 @@
+// Mock catalogue, promotions, shipping and seed orders.
+// Everything lives in the browser; no server calls are made.
+
+export const categories = [
+  { key: 'fiction', label: 'Fiction', blurb: 'Novels to lose an afternoon in' },
+  { key: 'mystery', label: 'Mystery & Thriller', blurb: 'Quiet crimes, sharp turns' },
+  { key: 'scifi', label: 'Sci-Fi & Fantasy', blurb: 'Other worlds, close to home' },
+  { key: 'history', label: 'History & Ideas', blurb: 'How we got here' },
+  { key: 'business', label: 'Business & Work', blurb: 'Better ways to build' },
+  { key: 'poetry', label: 'Poetry & Essays', blurb: 'Short forms, long echoes' },
+]
+
+export const categoryLabel = (key) => categories.find((c) => c.key === key)?.label ?? key
+export const formatLabel = { paperback: 'Paperback', hardcover: 'Hardcover', ebook: 'eBook' }
+export const LOW_STOCK = 4
+
+const paper = (price, stock) => ({ format: 'paperback', price, stock })
+const hard = (price, stock) => ({ format: 'hardcover', price, stock })
+const digital = (price) => ({ format: 'ebook', price, stock: 0 })
+
+export const seedBooks = [
+  {
+    slug: 'salt-harvest',
+    title: 'The Salt Harvest',
+    author: 'Mira Delacroix',
+    category: 'fiction',
+    publisher: 'Halcyon Press',
+    year: 2024,
+    pages: 336,
+    isbn: '978-1-8392-4410-6',
+    language: 'English',
+    summary: 'Three sisters, one failing salt works, and a summer that refuses to end.',
+    description:
+      'When the Vane sisters return to the coast to settle their father’s estate, they find the salt pans still working and a ledger full of debts. Over one long summer they must decide what the family name is worth — and who among them is willing to stay. Delacroix writes the sea like a fourth character: patient, indifferent, and always listening.',
+    formats: [paper(18.99, 12), hard(26.0, 5), digital(9.99)],
+    rating: 4.6,
+    reviewCount: 214,
+    reviews: [
+      {
+        id: 'r1',
+        name: 'Elena R.',
+        rating: 5,
+        date: '2026-09-14',
+        body: 'Read it in two sittings. The middle sister broke my heart and I have not stopped thinking about the last chapter.',
+      },
+      {
+        id: 'r2',
+        name: 'Tom W.',
+        rating: 4,
+        date: '2026-08-02',
+        body: 'Beautifully written, a little slow in the first hundred pages, then it opens up completely.',
+      },
+    ],
+    cover: { bg: '#223a34', ink: '#efe6d4', motif: 'waves' },
+    featured: true,
+  },
+  {
+    slug: 'house-of-thin-walls',
+    title: 'A House of Thin Walls',
+    author: 'Jonas Achterberg',
+    category: 'fiction',
+    publisher: 'Northline Books',
+    year: 2022,
+    pages: 288,
+    isbn: '978-1-7741-2088-3',
+    language: 'English',
+    summary: 'A translator rents a flat in a building where every conversation is shared.',
+    description:
+      'In a converted townhouse in an unnamed European city, a translator begins to mistake his neighbours’ arguments for the novel he is working on. A quiet, funny, unnerving book about the stories we borrow and the ones we cannot stop hearing.',
+    formats: [paper(16.5, 20), digital(7.99)],
+    rating: 4.3,
+    reviewCount: 96,
+    reviews: [{ id: 'r3', name: 'Marta K.', rating: 4, date: '2026-05-19', body: 'Strange and precise. I underlined more than I expected to.' }],
+    cover: { bg: '#e7dcc7', ink: '#2a2119', motif: 'grid' },
+  },
+  {
+    slug: 'northbound-slowly',
+    title: 'Northbound, Slowly',
+    author: 'Ingrid Solberg',
+    category: 'fiction',
+    publisher: 'Kestrel & Co.',
+    year: 2025,
+    pages: 304,
+    isbn: '978-1-8392-5521-8',
+    language: 'English',
+    summary: 'A retired train driver takes one last route, and a passenger who will not leave.',
+    description:
+      'A short, tender novel about an old man, a night train, and the stranger in carriage four who insists she has nowhere to be. Solberg writes with the patience of a long journey: every stop matters, nothing is wasted.',
+    formats: [paper(21.0, 8), digital(11.99)],
+    rating: 4.4,
+    reviewCount: 41,
+    reviews: [],
+    cover: { bg: '#2f4b63', ink: '#eae4d6', motif: 'rule' },
+    isNew: true,
+  },
+  {
+    slug: 'quiet-ledger',
+    title: 'The Quiet Ledger',
+    author: 'R. K. Marlowe',
+    category: 'mystery',
+    publisher: 'Marrow House',
+    year: 2023,
+    pages: 392,
+    isbn: '978-1-7788-1204-4',
+    language: 'English',
+    summary: 'A village accountant discovers that every death in her town was recorded twice.',
+    description:
+      'Agnes Fenn has kept the books for Hartley Vale for thirty years. When a routine audit reveals a second, private ledger listing the same names and dates, she begins to understand how careful a small town can be. A slow-burn mystery with an unforgettable, unsentimental detective.',
+    formats: [paper(17.99, 15), digital(8.99)],
+    rating: 4.7,
+    reviewCount: 338,
+    reviews: [
+      {
+        id: 'r4',
+        name: 'Priya S.',
+        rating: 5,
+        date: '2026-10-03',
+        body: 'The best kind of crime novel — no chase scenes, just an ordinary person noticing something wrong. Perfect autumn read.',
+      },
+      {
+        id: 'r5',
+        name: 'Dan H.',
+        rating: 4,
+        date: '2026-07-28',
+        body: 'Clever ending. I went straight back to chapter three to see how I missed it.',
+      },
+    ],
+    cover: { bg: '#1f2022', ink: '#e6d9c3', motif: 'steps' },
+    featured: true,
+  },
+  {
+    slug: 'nine-lanterns',
+    title: 'Nine Lanterns',
+    author: 'Priya Raghavan',
+    category: 'mystery',
+    publisher: 'Tidewater',
+    year: 2024,
+    pages: 352,
+    isbn: '978-1-8392-4477-9',
+    language: 'English',
+    summary: 'A festival, a missing photographer, and nine paper lanterns that were not lit.',
+    description:
+      'Every year the town of Kesari floats lanterns on the river for the dead. This year, nine are missing from the count and a visiting photographer has vanished with the negatives. Detective Anjali Rao has four days before the water takes the evidence.',
+    formats: [paper(19.5, 6), digital(9.49)],
+    rating: 4.4,
+    reviewCount: 128,
+    reviews: [],
+    cover: { bg: '#a2503a', ink: '#f4e7d6', motif: 'sun' },
+  },
+  {
+    slug: 'what-the-tide-kept',
+    title: 'What the Tide Kept',
+    author: 'Colm Doherty',
+    category: 'mystery',
+    publisher: 'Northline Books',
+    year: 2021,
+    pages: 310,
+    isbn: '978-1-7741-2210-8',
+    language: 'English',
+    summary: 'A cold case reopens when a beachcomber finds a wedding ring with two sets of initials.',
+    description:
+      'Twenty years after a honeymoon couple disappeared from the Cliffs of Moher, a retired sergeant is handed a ring in a plastic bag and a question he thought he had buried. A restrained, melancholy procedural.',
+    formats: [paper(15.99, 3), digital(6.99)],
+    rating: 4.1,
+    reviewCount: 74,
+    reviews: [],
+    cover: { bg: '#3c5a58', ink: '#e9e2d2', motif: 'waves' },
+  },
+  {
+    slug: 'cartographer-of-mars',
+    title: 'The Cartographer of Mars',
+    author: 'Ada Nwosu',
+    category: 'scifi',
+    publisher: 'Lantern Editions',
+    year: 2025,
+    pages: 448,
+    isbn: '978-1-9001-3345-1',
+    language: 'English',
+    summary: 'The first mapmaker on Mars discovers a valley that should not exist.',
+    description:
+      'Ada Nwosu’s debut is a quiet epic about distance: from Earth, from family, from the person you were when you left. Solo-16 is meant to be a routine survey, until the terrain begins to disagree with the charts. Smart, human science fiction with a big heart.',
+    formats: [paper(22.0, 10), hard(27.0, 4), digital(12.99)],
+    rating: 4.8,
+    reviewCount: 189,
+    reviews: [
+      {
+        id: 'r6',
+        name: 'Sam O.',
+        rating: 5,
+        date: '2026-10-21',
+        body: 'One of those books you finish and then immediately want to talk to someone about.',
+      },
+    ],
+    cover: { bg: '#7a3b2e', ink: '#f3e3cf', motif: 'orbit' },
+    featured: true,
+    isNew: true,
+  },
+  {
+    slug: 'slow-orbit',
+    title: 'Slow Orbit',
+    author: 'Teo Marchand',
+    category: 'scifi',
+    publisher: 'Halcyon Press',
+    year: 2022,
+    pages: 376,
+    isbn: '978-1-8392-3087-5',
+    language: 'English',
+    summary: 'Two rival stations spend forty years circling the same dying star.',
+    description:
+      'Told entirely through transmission logs, maintenance requests and unsent letters, Slow Orbit follows two crews who can never meet but cannot stop talking. A patient, romantic book about distance and the small acts that keep us together.',
+    formats: [paper(18.0, 17), digital(8.99)],
+    rating: 4.5,
+    reviewCount: 156,
+    reviews: [],
+    cover: { bg: '#26323f', ink: '#dfe4e6', motif: 'orbit' },
+  },
+  {
+    slug: 'last-archive',
+    title: 'The Last Archive',
+    author: 'Yuki Hara',
+    category: 'scifi',
+    publisher: 'Kestrel & Co.',
+    year: 2024,
+    pages: 320,
+    isbn: '978-1-8392-4498-4',
+    language: 'English',
+    summary: 'In a city with no memory, one archivist is paid to forget on purpose.',
+    description:
+      'Citizens of the Archive District trade their memories for housing. Haru takes a job restoring the records nobody is supposed to read. A spare, beautiful novel about what a person is without their past.',
+    formats: [paper(20.0, 9), digital(9.99)],
+    rating: 4.6,
+    reviewCount: 203,
+    reviews: [],
+    cover: { bg: '#d9a441', ink: '#231c12', motif: 'grid' },
+  },
+  {
+    slug: 'bread-and-empires',
+    title: 'Bread and Empires',
+    author: 'Helena Vasquez',
+    category: 'history',
+    publisher: 'Marrow House',
+    year: 2023,
+    pages: 512,
+    isbn: '978-1-7788-1310-2',
+    language: 'English',
+    summary: 'A history of the ancient world told through its ovens and grain stores.',
+    description:
+      'Empires are built on bread, and they fall when it runs out. Vasquez traces four thousand years of politics through flour, salt and fire — a genuinely fresh account of how power works, written with wit and a baker’s precision.',
+    formats: [paper(28.0, 7), hard(34.0, 3), digital(14.99)],
+    rating: 4.5,
+    reviewCount: 122,
+    reviews: [
+      {
+        id: 'r7',
+        name: 'Nadia B.',
+        rating: 5,
+        date: '2026-06-11',
+        body: 'A history book that reads like a good novel. The chapter on Roman bakeries is worth the price alone.',
+      },
+    ],
+    cover: { bg: '#efe2cb', ink: '#4a2c1d', motif: 'sun' },
+    featured: true,
+  },
+  {
+    slug: 'years-of-small-machines',
+    title: 'The Years of Small Machines',
+    author: 'Owen Fitch',
+    category: 'history',
+    publisher: 'Tidewater',
+    year: 2020,
+    pages: 398,
+    isbn: '978-1-8392-1120-6',
+    language: 'English',
+    summary: 'How the ordinary tools of the last century changed daily life.',
+    description:
+      'From the electric kettle to the answering machine, Fitch argues that the twentieth century was not made by grand inventions but by the small machines we stopped noticing. Warm, curious social history.',
+    formats: [paper(24.0, 11), digital(11.99)],
+    rating: 4.2,
+    reviewCount: 88,
+    reviews: [],
+    cover: { bg: '#4c5638', ink: '#ede7d6', motif: 'steps' },
+  },
+  {
+    slug: 'coastlines',
+    title: 'Coastlines',
+    author: 'Amara Bello',
+    category: 'history',
+    publisher: 'Northline Books',
+    year: 2024,
+    pages: 344,
+    isbn: '978-1-7741-3390-3',
+    language: 'English',
+    summary: 'Twelve shores, and the people who have refused to leave them.',
+    description:
+      'Bello travels from the Mekong delta to the Outer Hebrides, meeting communities who have learned to live with the water rather than against it. Part travelogue, part elegy, and quietly hopeful about adaptation.',
+    formats: [paper(26.5, 5), digital(13.5)],
+    rating: 4.3,
+    reviewCount: 57,
+    reviews: [],
+    cover: { bg: '#2f5d5a', ink: '#eae4d4', motif: 'waves' },
+  },
+  {
+    slug: 'long-middle',
+    title: 'The Long Middle',
+    author: 'Daniel Osei',
+    category: 'business',
+    publisher: 'Halcyon Press',
+    year: 2024,
+    pages: 264,
+    isbn: '978-1-8392-4412-0',
+    language: 'English',
+    summary: 'Why the best work happens after the launch, not before it.',
+    description:
+      'Most teams optimise for beginnings: pitches, launches, first impressions. Osei argues that the compounding value lives in the unglamorous middle — maintenance, iteration and the discipline to keep showing up. Practical and refreshingly unexcited about shortcuts.',
+    formats: [paper(24.99, 14), digital(12.99)],
+    rating: 4.4,
+    reviewCount: 147,
+    reviews: [],
+    cover: { bg: '#232323', ink: '#e8ddc9', motif: 'rule' },
+    featured: true,
+  },
+  {
+    slug: 'quiet-systems',
+    title: 'Quiet Systems',
+    author: 'Frances Lin',
+    category: 'business',
+    publisher: 'Kestrel & Co.',
+    year: 2025,
+    pages: 232,
+    isbn: '978-1-8392-6630-7',
+    language: 'English',
+    summary: 'Designing organisations that do not need to shout.',
+    description:
+      'A field guide to calm operations: clear ownership, small feedback loops, and documentation people actually read. Lin draws on a decade of operations work at small companies to show how good systems lower the volume of everything else.',
+    formats: [paper(27.0, 6), digital(14.0)],
+    rating: 4.6,
+    reviewCount: 39,
+    reviews: [],
+    cover: { bg: '#dcd2c1', ink: '#25302b', motif: 'grid' },
+    isNew: true,
+  },
+  {
+    slug: 'work-worth-doing',
+    title: 'Work Worth Doing',
+    author: 'Sam Ellery',
+    category: 'business',
+    publisher: 'Marrow House',
+    year: 2021,
+    pages: 288,
+    isbn: '978-1-7788-0988-4',
+    language: 'English',
+    summary: 'A short, practical case for doing fewer things properly.',
+    description:
+      'Ellery spent fifteen years turning around small manufacturing firms. This is his notebook: what to keep, what to cut, and how to tell the difference when everything feels urgent.',
+    formats: [paper(19.99, 19), digital(9.99)],
+    rating: 4.0,
+    reviewCount: 64,
+    reviews: [],
+    cover: { bg: '#a9b3a0', ink: '#1f261f', motif: 'steps' },
+  },
+  {
+    slug: 'field-notes-for-rain',
+    title: 'Field Notes for Rain',
+    author: 'Noor Haddad',
+    category: 'poetry',
+    publisher: 'Lantern Editions',
+    year: 2023,
+    pages: 112,
+    isbn: '978-1-9001-2210-9',
+    language: 'English',
+    summary: 'Poems about weather, migration and the rooms we carry with us.',
+    description:
+      'Haddad’s second collection moves between two cities and one long winter. These are short, exact poems that trust the reader — about crossing borders, learning a new language, and the particular loneliness of a shared kitchen.',
+    formats: [paper(16.0, 13), digital(7.99)],
+    rating: 4.7,
+    reviewCount: 91,
+    reviews: [{ id: 'r8', name: 'Leila M.', rating: 5, date: '2026-04-02', body: 'I keep this on the table by the window and read one poem most mornings.' }],
+    cover: { bg: '#39485a', ink: '#ece3d2', motif: 'rule' },
+  },
+  {
+    slug: 'small-weather',
+    title: 'Small Weather',
+    author: 'Elena Cifuentes',
+    category: 'poetry',
+    publisher: 'Tidewater',
+    year: 2025,
+    pages: 96,
+    isbn: '978-1-8392-6671-0',
+    language: 'English',
+    summary: 'Forty short poems on gardens, siblings and the end of summer.',
+    description:
+      'Cifuentes writes small weather: the kind that happens inside a family. Tender without being sentimental, with a sharp eye for the ordinary objects that outlast us all.',
+    formats: [paper(17.5, 9), digital(8.5)],
+    rating: 4.5,
+    reviewCount: 33,
+    reviews: [],
+    cover: { bg: '#d9b3a6', ink: '#3a2620', motif: 'sun' },
+    isNew: true,
+  },
+  {
+    slug: 'kitchen-almanac',
+    title: 'The Kitchen Almanac',
+    author: 'Ruth Peake',
+    category: 'poetry',
+    publisher: 'Northline Books',
+    year: 2022,
+    pages: 144,
+    isbn: '978-1-7741-2765-3',
+    language: 'English',
+    summary: 'Essays on cooking, grief and the recipes we inherit.',
+    description:
+      'Peake learned to cook from a mother who never wrote anything down. These essays reconstruct a kitchen from memory: the sound of a pressure cooker, the smell of burnt sugar, and the way a recipe can hold a person.',
+    formats: [paper(18.5, 16), digital(8.99)],
+    rating: 4.3,
+    reviewCount: 68,
+    reviews: [],
+    cover: { bg: '#6b5b45', ink: '#f0e7d6', motif: 'arch' },
+  },
+]
+
+export const coverFallback = { bg: '#3a3f45', ink: '#eee7d8', motif: 'rule' }
+
+export const cheapest = (book) => Math.min(...book.formats.map((f) => f.price))
+export const totalStock = (book) => book.formats.filter((f) => f.format !== 'ebook').reduce((n, f) => n + f.stock, 0)
+
+export const money = (value) => `$${Number(value).toFixed(2)}`
+export const formatDate = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+export const formatDateTime = (iso) =>
+  new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+
+export const FREE_SHIPPING_AT = 35
+
+export const shippingMethods = [
+  { id: 'standard', label: 'Standard', detail: '3–5 business days', price: 4.95, freeOver: FREE_SHIPPING_AT },
+  { id: 'express', label: 'Express', detail: '1–2 business days', price: 9.95 },
+  { id: 'pickup', label: 'Collect in store', detail: 'Ready in 2 hours · 14 Lantern St', price: 0 },
+]
+
+export const promos = [
+  { code: 'READMORE', label: '15% off your order', kind: 'percent', value: 15, min: 0 },
+  { code: 'FIRST5', label: '$5 off orders over $25', kind: 'fixed', value: 5, min: 25 },
+  { code: 'FREESHIP', label: 'Free standard shipping', kind: 'shipping', value: 0, min: 0 },
+]
+
+export function findPromo(input, subtotal) {
+  const code = String(input || '').trim().toUpperCase()
+  if (!code) return { error: 'Enter a code.' }
+  const promo = promos.find((p) => p.code === code)
+  if (!promo) return { error: 'That code is not valid.' }
+  if (subtotal < promo.min) return { error: `Spend ${money(promo.min)} to use ${promo.code}.` }
+  return { promo }
+}
+
+export function shippingCost(method, subtotal, freeShipping = false) {
+  const option = shippingMethods.find((m) => m.id === method)
+  if (!option) return 0
+  if (option.id === 'standard' && (freeShipping || subtotal >= FREE_SHIPPING_AT)) return 0
+  return option.price
+}
+
+export function calcTotals(subtotal, isPhysical, method, promo) {
+  let discount = 0
+  if (promo && promo.kind === 'percent') discount = Math.round(subtotal * promo.value) / 100
+  if (promo && promo.kind === 'fixed') discount = Math.min(promo.value, subtotal)
+  const shipping = isPhysical ? shippingCost(method, subtotal - discount, promo && promo.kind === 'shipping') : 0
+  return { discount, shipping, total: Math.round((subtotal - discount + shipping) * 100) / 100 }
+}
+
+export const orderStatuses = ['Processing', 'Packed', 'Shipped', 'Delivered']
+
+export const statusNote = {
+  Processing: 'Order received',
+  Packed: 'Packed at our warehouse',
+  Shipped: 'Handed to the carrier',
+  Delivered: 'Delivered',
+  Cancelled: 'Order cancelled',
+}
+
+export const returnReasons = ['Arrived damaged', 'Not the edition I wanted', 'Changed my mind', 'Duplicate order', 'Other']
+
+export const seedOrders = [
+  {
+    id: 'BK-7F2K1',
+    invoice: 'INV-2026-1041',
+    createdAt: '2026-10-29T10:12:00.000Z',
+    email: 'demo@booknest.test',
+    name: 'Alex Moreau',
+    address: { line1: '14 Lantern Street, Apt 3', city: 'Portland', postcode: '97209', country: 'United States' },
+    items: [
+      { slug: 'salt-harvest', title: 'The Salt Harvest', author: 'Mira Delacroix', format: 'paperback', price: 18.99, qty: 1 },
+      { slug: 'quiet-ledger', title: 'The Quiet Ledger', author: 'R. K. Marlowe', format: 'ebook', price: 8.99, qty: 1 },
+    ],
+    subtotal: 27.98,
+    discount: 0,
+    shipping: 4.95,
+    total: 32.93,
+    shippingMethod: 'standard',
+    payment: 'Visa ending 4242',
+    status: 'Delivered',
+    tracking: [
+      { at: '2026-10-29T10:12:00.000Z', label: 'Order received', note: 'Payment confirmed' },
+      { at: '2026-10-30T08:40:00.000Z', label: 'Packed at our warehouse' },
+      { at: '2026-10-31T15:05:00.000Z', label: 'Handed to the carrier', note: 'Northline Deliveries · Tracking 4NL-8821' },
+      { at: '2026-11-04T11:32:00.000Z', label: 'Delivered', note: 'Left with recipient' },
+    ],
+  },
+  {
+    id: 'BK-9Q4X2',
+    invoice: 'INV-2026-1078',
+    createdAt: '2026-11-20T18:22:00.000Z',
+    email: 'demo@booknest.test',
+    name: 'Alex Moreau',
+    address: { line1: '14 Lantern Street, Apt 3', city: 'Portland', postcode: '97209', country: 'United States' },
+    items: [
+      { slug: 'cartographer-of-mars', title: 'The Cartographer of Mars', author: 'Ada Nwosu', format: 'hardcover', price: 27.0, qty: 1 },
+      { slug: 'field-notes-for-rain', title: 'Field Notes for Rain', author: 'Noor Haddad', format: 'paperback', price: 16.0, qty: 1 },
+    ],
+    subtotal: 43.0,
+    discount: 0,
+    shipping: 0,
+    total: 43.0,
+    shippingMethod: 'standard',
+    payment: 'Visa ending 4242',
+    status: 'Shipped',
+    tracking: [
+      { at: '2026-11-20T18:22:00.000Z', label: 'Order received', note: 'Payment confirmed' },
+      { at: '2026-11-21T09:15:00.000Z', label: 'Packed at our warehouse' },
+      { at: '2026-11-22T07:48:00.000Z', label: 'Handed to the carrier', note: 'Northline Deliveries · Tracking 4NL-9107' },
+    ],
+  },
+]
+
+export const seedReturns = [
+  {
+    id: 'RT-1042',
+    orderId: 'BK-7F2K1',
+    slug: 'salt-harvest',
+    title: 'The Salt Harvest',
+    reason: 'Arrived damaged',
+    note: 'Corner of the cover was crushed in transit.',
+    status: 'Approved',
+    createdAt: '2026-11-06T09:10:00.000Z',
+  },
+]
