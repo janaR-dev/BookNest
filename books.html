@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f6f1ea" />
+    <title>All books — BookNest</title>
+    <meta name="description" content="Browse the BookNest catalogue by shelf, format, price and rating. Search by title, author or ISBN." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1a17'/%3E%3Cpath d='M9 8h9a3 3 0 0 1 3 3v13H12a3 3 0 0 1-3-3z' fill='none' stroke='%23f6f1ea' stroke-width='1.6'/%3E%3Cpath d='M13 12h5M13 16h4' stroke='%23f6f1ea' stroke-width='1.4'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main class="container">
+      <div class="page-head">
+        <p class="eyebrow" id="page-eyebrow">Catalogue</p>
+        <h1 id="page-title">All books <span class="count" id="page-count"></span></h1>
+      </div>
+
+      <div class="catalog-wrap">
+        <aside class="filters" id="filters" aria-label="Filters"></aside>
+        <div>
+          <div class="catalog-toolbar">
+            <form class="catalog-search" role="search" id="search-form">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" />
+              </svg>
+              <input class="input" type="search" name="q" id="search-input" placeholder="Search title, author or ISBN" aria-label="Search books" />
+            </form>
+            <button class="btn btn--secondary btn--sm mobile-filter-btn" type="button" id="open-filters">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+              Filters
+            </button>
+            <select class="select select--sm" id="sort" style="width:auto" aria-label="Sort books">
+              <option value="featured">Featured</option>
+              <option value="new">Newest</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="rating">Highest rated</option>
+            </select>
+          </div>
+          <div class="active-chips" id="chips"></div>
+          <div id="results"></div>
+        </div>
+      </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <div class="drawer-backdrop" id="filter-backdrop"></div>
+    <div class="filter-panel" id="filter-panel" aria-label="Filters"></div>
+    <script type="module" src="src/pages/books.js"></script>
+  </body>
+</html>
