@@ -7,6 +7,7 @@ const digital = (price) => ({ format: 'ebook', price, stock: 0 })
 
 export const seedBooks = [
   {
+    id: 1,
     slug: 'salt-harvest',
     title: 'The Salt Harvest',
     author: 'Mira Delacroix',
@@ -43,6 +44,7 @@ export const seedBooks = [
     featured: true,
   },
   {
+    id: 2,
     slug: 'house-of-thin-walls',
     title: 'A House of Thin Walls',
     author: 'Jonas Achterberg',
@@ -63,6 +65,7 @@ export const seedBooks = [
     cover: { bg: '#e7dcc7', ink: '#2a2119', motif: 'grid' },
   },
   {
+    id: 3,
     slug: 'northbound-slowly',
     title: 'Northbound, Slowly',
     author: 'Ingrid Solberg',
@@ -84,6 +87,7 @@ export const seedBooks = [
     isNew: true,
   },
   {
+    id: 4,
     slug: 'quiet-ledger',
     title: 'The Quiet Ledger',
     author: 'R. K. Marlowe',
@@ -120,6 +124,7 @@ export const seedBooks = [
     featured: true,
   },
   {
+    id: 5,
     slug: 'nine-lanterns',
     title: 'Nine Lanterns',
     author: 'Priya Raghavan',
@@ -140,6 +145,7 @@ export const seedBooks = [
     cover: { bg: '#a2503a', ink: '#f4e7d6', motif: 'sun' },
   },
   {
+    id: 6,
     slug: 'what-the-tide-kept',
     title: 'What the Tide Kept',
     author: 'Colm Doherty',
@@ -160,6 +166,7 @@ export const seedBooks = [
     cover: { bg: '#3c5a58', ink: '#e9e2d2', motif: 'waves' },
   },
   {
+    id: 7,
     slug: 'cartographer-of-mars',
     title: 'The Cartographer of Mars',
     author: 'Ada Nwosu',
@@ -190,6 +197,7 @@ export const seedBooks = [
     isNew: true,
   },
   {
+    id: 8,
     slug: 'slow-orbit',
     title: 'Slow Orbit',
     author: 'Teo Marchand',
@@ -210,6 +218,7 @@ export const seedBooks = [
     cover: { bg: '#26323f', ink: '#dfe4e6', motif: 'orbit' },
   },
   {
+    id: 9,
     slug: 'last-archive',
     title: 'The Last Archive',
     author: 'Yuki Hara',
@@ -230,6 +239,7 @@ export const seedBooks = [
     cover: { bg: '#d9a441', ink: '#231c12', motif: 'grid' },
   },
   {
+    id: 10,
     slug: 'bread-and-empires',
     title: 'Bread and Empires',
     author: 'Helena Vasquez',
@@ -259,6 +269,7 @@ export const seedBooks = [
     featured: true,
   },
   {
+    id: 11,
     slug: 'years-of-small-machines',
     title: 'The Years of Small Machines',
     author: 'Owen Fitch',
@@ -279,6 +290,7 @@ export const seedBooks = [
     cover: { bg: '#4c5638', ink: '#ede7d6', motif: 'steps' },
   },
   {
+    id: 12,
     slug: 'coastlines',
     title: 'Coastlines',
     author: 'Amara Bello',
@@ -299,6 +311,7 @@ export const seedBooks = [
     cover: { bg: '#2f5d5a', ink: '#eae4d4', motif: 'waves' },
   },
   {
+    id: 13,
     slug: 'long-middle',
     title: 'The Long Middle',
     author: 'Daniel Osei',
@@ -320,6 +333,7 @@ export const seedBooks = [
     featured: true,
   },
   {
+    id: 14,
     slug: 'quiet-systems',
     title: 'Quiet Systems',
     author: 'Frances Lin',
@@ -341,6 +355,7 @@ export const seedBooks = [
     isNew: true,
   },
   {
+    id: 15,
     slug: 'work-worth-doing',
     title: 'Work Worth Doing',
     author: 'Sam Ellery',
@@ -361,6 +376,7 @@ export const seedBooks = [
     cover: { bg: '#a9b3a0', ink: '#1f261f', motif: 'steps' },
   },
   {
+    id: 16,
     slug: 'field-notes-for-rain',
     title: 'Field Notes for Rain',
     author: 'Noor Haddad',
@@ -381,6 +397,7 @@ export const seedBooks = [
     cover: { bg: '#39485a', ink: '#ece3d2', motif: 'rule' },
   },
   {
+    id: 17,
     slug: 'small-weather',
     title: 'Small Weather',
     author: 'Elena Cifuentes',
@@ -402,6 +419,7 @@ export const seedBooks = [
     isNew: true,
   },
   {
+    id: 18,
     slug: 'kitchen-almanac',
     title: 'The Kitchen Almanac',
     author: 'Ruth Peake',
