@@ -1,6 +1,7 @@
 // Shared chrome: header, cart drawer, mobile menu, footer and small HTML helpers.
 
 import { FREE_SHIPPING_AT, money, formatLabel } from './data.js'
+import { coverArt, coverFallback } from './covers.js'
 import { cartItems, cartCount, cartSubtotal, cartHasPhysical, read, removeLine, setQty, toggleWishlist } from './store.js'
 
 const PATHS = {
@@ -43,46 +44,16 @@ export function starsHtml(rating) {
     .join('')}</span>`
 }
 
-const MOTIFS = {
-  waves: (y) => `<path d="M-10 ${y} C 40 ${y - 20}, 70 ${y + 20}, 110 ${y} S 180 ${y - 16}, 215 ${y + 4}"/>`,
-  arch: (i) => {
-    const w = 46 + i * 34
-    const x = 100 - w / 2
-    return `<path d="M ${x} 290 V ${150 - i * 6} a ${w / 2} ${w / 2} 0 0 1 ${w} 0 V 290"/>`
-  },
-  steps: (i) => `<path d="M ${i * 18 - 20} 300 V ${250 - i * 34} H ${i * 18 + 40} V ${216 - i * 34} H ${i * 18 + 100} V ${182 - i * 34} H 220"/>`,
-  rule: (i) => `<line x1="0" y1="${18 + i * 24}" x2="200" y2="${18 + i * 24}" opacity="${i % 3 === 0 ? 0.5 : 1}"/>`,
-}
-
-function motifSvg(motif) {
-  let body = ''
-  if (motif === 'waves') body = [34, 66, 98, 130, 162, 194, 226, 258, 290].map(MOTIFS.waves).join('')
-  else if (motif === 'arch') body = [0, 1, 2, 3, 4].map(MOTIFS.arch).join('')
-  else if (motif === 'steps') body = [0, 1, 2, 3, 4, 5].map(MOTIFS.steps).join('')
-  else if (motif === 'rule') body = Array.from({ length: 12 }, (_, i) => MOTIFS.rule(i)).join('')
-  else if (motif === 'orbit') {
-    body = [28, 54, 80, 106].map((r) => `<circle cx="100" cy="150" r="${r}"/>`).join('')
-    body += '<ellipse cx="100" cy="150" rx="118" ry="38" transform="rotate(-24 100 150)"/><circle cx="100" cy="150" r="6" fill="currentColor" stroke="none"/>'
-  } else if (motif === 'sun') {
-    body = '<circle cx="100" cy="112" r="42"/>'
-    body += [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330]
-      .map((deg) => {
-        const rad = (deg * Math.PI) / 180
-        return `<line x1="${(100 + Math.cos(rad) * 56).toFixed(1)}" y1="${(112 + Math.sin(rad) * 56).toFixed(1)}" x2="${(100 + Math.cos(rad) * 88).toFixed(1)}" y2="${(112 + Math.sin(rad) * 88).toFixed(1)}"/>`
-      })
-      .join('')
-    body += [168, 190, 212, 234, 256, 278].map((y) => `<line x1="0" y1="${y}" x2="200" y2="${y}"/>`).join('')
-  } else {
-    body = Array.from({ length: 8 }, (_, i) => `<line x1="${i * 28 + 4}" y1="0" x2="${i * 28 + 4}" y2="300"/>`).join('')
-    body += Array.from({ length: 11 }, (_, i) => `<line x1="0" y1="${i * 28 + 4}" x2="200" y2="${i * 28 + 4}"/>`).join('')
-  }
-  return `<svg viewBox="0 0 200 300" fill="none" stroke="currentColor" stroke-width="1.2" preserveAspectRatio="none" aria-hidden="true">${body}</svg>`
-}
-
 export function coverHtml(book) {
-  const cover = book.cover || { bg: '#3a3f45', ink: '#eee7d8', motif: 'rule' }
+  if (book.img) {
+    return `<div class="cover">
+      <img class="cover__img" src="${escapeHtml(book.img)}" alt="${escapeHtml(book.title)} by ${escapeHtml(book.author)}" width="400" height="600" loading="lazy" decoding="async" />
+      <div class="cover__spine"></div><div class="cover__edge"></div>
+    </div>`
+  }
+  const cover = book.cover || coverFallback
   return `<div class="cover" style="background:${cover.bg};color:${cover.ink}">
-    <div class="cover__art">${motifSvg(cover.motif)}</div>
+    <div class="cover__art">${coverArt(cover.motif)}</div>
     <div class="cover__spine"></div><div class="cover__edge"></div>
     <div class="cover__body">
       <span class="cover__imprint">BookNest</span>
